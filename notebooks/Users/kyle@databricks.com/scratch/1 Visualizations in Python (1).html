@@ -1,0 +1,69 @@
+# Databricks notebook source exported at Mon, 18 Apr 2016 20:34:35 UTC
+# MAGIC %md
+# MAGIC 
+# MAGIC # **Visualizations in Python**
+# MAGIC This notebook covers how to create charts and graphs in Python notebooks.
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC ### Python notebooks visualizations support:
+# MAGIC   * Built in Databricks Visualizations - Read on to find out more.
+# MAGIC   * [Display HTML (including D3 Visualizations)](/#workspace/databricks_guide/04 Visualizations/3 HTML, D3, and SVG).
+# MAGIC   * [Display Matplotlib and GGPlot Objects](#workspace/databricks_guide/04 Visualizations/4 Matplotlib and GGPlot).
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC ### DataFrames, including Spark SQL select statement results, can be displayed in basic Databricks visualizations.
+# MAGIC The cell below shows you how to create a DataFrame and register a temporary Spark SQL table in Python.
+
+# COMMAND ----------
+
+from pyspark.sql import Row
+
+array = [Row(key="a", group="vowels", value=1),
+         Row(key="b", group="consonants", value=2),
+         Row(key="c", group="consonants", value=3),
+         Row(key="d", group="consonants", value=4),
+         Row(key="e", group="vowels", value=5)]
+dataframe = sqlContext.createDataFrame(sc.parallelize(array))
+dataframe.registerTempTable("PythonTestTable")
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC ### Call **display()** on a DataFrame to generate a Databricks visualization.
+
+# COMMAND ----------
+
+display(dataframe)
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC ### **SQL cells** with **select statements** will also generate a chart/graph.
+
+# COMMAND ----------
+
+# MAGIC %sql select * from PythonTestTable
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC ### Or you can call **display** on a Spark SQL select statement, since that is also a dataframe.
+
+# COMMAND ----------
+
+display(sqlContext.sql("select * from PythonTestTable"))
+
+# COMMAND ----------
+
+# MAGIC %md
+# MAGIC 
+# MAGIC ### To find out how to configure other graph types besides bar charts, see the **[Charts & Graphs Notebook](/#workspace/databricks_guide/04 Visualizations/2 Charts & Graphs - py)**.
