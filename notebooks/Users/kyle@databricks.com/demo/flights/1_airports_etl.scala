@@ -1,4 +1,4 @@
-// Databricks notebook source exported at Wed, 22 Jun 2016 18:42:14 UTC
+// Databricks notebook source exported at Wed, 22 Jun 2016 18:42:52 UTC
 // MAGIC %md #Load Airports Data
 // MAGIC * Data for all airport can be found at [OpenFlights.org](http://openflights.org/data.html)
 // MAGIC 
